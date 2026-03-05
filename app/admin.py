@@ -13,5 +13,5 @@ class SecurityModelView(ModelView):
         return redirect(url_for("auth.login"))
     
     
-def configuracion_admin():
+def configuracion_admin(app): # <--- 
     admin.add_view(SecurityModelView(User, db.session))
