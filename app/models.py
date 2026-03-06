@@ -12,3 +12,24 @@ class User(db.Model, UserMixin):
         
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+class Categoria (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(150), nullable = False)
+    productos = db.relationship('Producto', backref='categoria')
+    
+    def __repr__(self):
+        return self.nombre
+    
+class Producto (db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(150), nullable = False)
+    descripcion = db.Column(db.Text, nullable = False)
+    precio =  db.Column(db.Float, nullable = False)
+    stock =  db.Column(db.Integer, nullable = False)
+    
+    categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id'))
+    
+    def __repr__(self):
+        return self.nombre
+    

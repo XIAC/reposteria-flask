@@ -1,6 +1,6 @@
 from  flask import Blueprint, redirect, url_for, render_template, request
 from flask_login import login_required, login_user, logout_user
-from .models  import User
+from .models  import User, Producto
 from  .extensions import login_manager
 auth_bp = Blueprint("auth", __name__)
 
@@ -24,7 +24,14 @@ def login():
             return redirect("/admin")
     
     return render_template("login.html")
+
+@auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
+
+@auth_bp.route("/productos")
+def productos():
+    lista_productos = Producto.query.all()
+    return render_template("productos.html", productos = lista_productos)
