@@ -1,16 +1,140 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repostería Dalas</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body{
+        background: linear-gradient(135deg,#ffe6f0,#fff5e6);
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card{
+        border-radius:20px;
+        border:none;
+    }
+
+    .titulo{
+        text-align:center;
+        color:#d63384;
+        font-weight:bold;
+    }
+
+    .logo{
+        font-size:50px;
+        text-align:center;
+    }
+
+    .btn-pastel{
+        background-color:#ff85a2;
+        border:none;
+        color:white;
+        width:100%;
+    }
+
+    .btn-pastel:hover{
+        background-color:#ff5c8a;
+    }
+
+    input{
+        border-radius:10px !important;
+    }
+
+    .footer{
+        text-align:center;
+        margin-top:10px;
+        font-size:14px;
+        color:#888;
+    }
+</style>
+
+</head>
+
+    <body>
+
+        <div class="container">
+            <div class="row justify-content-center">
+            <div class="col-md-4">
+
+            <div class="card shadow-lg p-4">
+
+            <div class="logo">
+            🍰
+            </div>
+
+            <h3 class="titulo">Repostería Dalas</h3>
+            <p class="text-center text-muted">Inicia sesión para continuar</p>
+
+            <div class="card-body">
+
+            <form method="POST">
+
+            <div class="mb-3">
+            <input class="form-control" type="text" name="nombreusuario" placeholder="Ingrese usuario" required>
+            </div>
+
+            <div class="mb-3">
+            <input class="form-control" type="password" name="contrasenia" placeholder="Ingrese contraseña" required>
+            </div>
+
+            <button class="btn btn-pastel" type="submit">Ingresar</button>
+
+            </form>
+
+            <div class="footer">
+            Endulzando tu día ✨
+            </div>
+
+            </div>
+            </div>
+
+            </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reposteria Dalas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-<body>
-    <h2>LOGIN</h2>
-    <form method="POST">
-        <input type="text" name="nombreusuario" placeholder="INgrese usuario" required/>
-        <input type="password" name="contrasenia" placeholder="INgrese contrasenia" required/>
-        <button type="submit"> Ingresar</button>
-    </form>
+<body class="align-items-center"
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow-lg p-5" >
+                    <h2>Inicie Sesion</h2>
+                    <div class="card-body p-4">
+                        <form method="POST">
+                            <div class="mb-3">
+                                <input class="form-control" type="text" name="nombreusuario" placeholder="INgrese usuario" required/>
+
+                            </div>
+                            <Div class="mb-3">
+                                <input class="form-control" type="password" name="contrasenia" placeholder="INgrese contrasenia" required/>
+                            </Div>
+                            <button class="btn btn-outline-success" type="submit"> Ingresar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        
+        
+    </div>
+   
 </body>
-</html>
+</html> -->

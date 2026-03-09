@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reposteria DAlas</title>
+</head>
+<body>
+     {% for p in productos %}
+            <div>
+                <h3>{{ p.nombre  }}</h3>
+                <p>{{ p.descripcion  }}</p>
+                <strong>{{ p.precio }} </strong>
+                <i>{{ p.stock }} </i>
+
+            </div>
+     {% endfor %}
+    
+</body>
+</html>
