@@ -2,7 +2,7 @@ from flask_login import current_user
 from flask import redirect, url_for 
 from flask_admin.contrib.sqla import ModelView
 from .extensions import admin, db
-from .models import User
+from .models import User, Categoria, Producto
 class SecurityModelView(ModelView):
     column_exclude_list = ["password"]
    
@@ -15,3 +15,5 @@ class SecurityModelView(ModelView):
     
 def configuracion_admin():
     admin.add_view(SecurityModelView(User, db.session))
+    admin.add_view(SecurityModelView(Categoria, db.session))
+    admin.add_view(SecurityModelView(Producto, db.session))

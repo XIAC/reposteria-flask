@@ -2,6 +2,9 @@ from  flask import Blueprint, redirect, url_for, render_template, request
 from flask_login import login_required, login_user, logout_user
 from .models  import User
 from  .extensions import login_manager
+from flask import jsonify
+from .ai_chat import preguntar_chatbot
+
 auth_bp = Blueprint("auth", __name__)
 
 @login_manager.user_loader
@@ -28,3 +31,17 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("auth.login"))
+
+
+@auth_bp.route("/chatbot", methods=["POST"])
+def chatbot():
+    data = request.json
+    pregunta = data.get("mensaje")
+    respuesta = preguntar_chatbot(pregunta)
+    return jsonify({
+        "respuesta": respuesta
+    })
+@auth_bp.route("/chat")
+def chat():
+
+    return render_template("chatbot.html")   
