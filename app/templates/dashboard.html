@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1> Reposteria Dalas Analisis con  IA</h1>
+    <p>Total Productos: {{ total_productos }}</p>
+    <p>Total Stock: {{ valor_stock }}</p>
+    <div style="width: 800px;">
+        <canvas id="grafico"></canvas>
+    </div>
+    <button onclick="analisisIA()"> Analizar con IA </button>
+    <div id="resultadoIA"> </div>
+    <script>
+        let nombres = {{ nombres | tojson }}
+        let stock = {{ stock | tojson }}
+        console.log(nombres);
+        console.log(stock);
+        const graf = document.getElementById('grafico');
+        new Chart(
+            graf,
+            {
+            type: 'bar',
+            options: {
+                animation: false,
+                plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: false
+                }
+                }
+            },
+            data: {
+                labels: nombres,
+                datasets: [
+                {
+                    label: 'Stock de productos',
+                    data: stock
+                }]
+            }
+            }
+        );
+
+        function analisisIA() {
+            fetch("/analisis-ia")
+            .then(response => response.json())
+            .then(data => {
+                let resultado = document.getElementById("resultadoIA")
+                resultado.innerHTML = "<h4>Analisis sugerido por la IA</h4>"+ data.analisis
+            })
+        }
+    </script>
+</body>
+</html>
