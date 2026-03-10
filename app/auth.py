@@ -32,6 +32,7 @@ def logout():
     logout_user()
     return redirect(url_for("auth.login"))
 
+# chatbot
 
 @auth_bp.route("/chatbot", methods=["POST"])
 def chatbot():
@@ -45,3 +46,38 @@ def chatbot():
 def chat():
 
     return render_template("chatbot.html")   
+# analisis ia con graficos
+from .models import Producto
+from .extensions import db
+from sqlalchemy import func
+from .ai_chat import client
+@auth_bp.route("/dashboard")
+@login_required
+def dashboard():
+    total_productos = Producto.query.count()
+    valor_stock = db.session.query(func.sum(Producto.precio * Producto.stock)).scalar()
+    productos = Producto.query.all()
+    nombres = [ prod.nombre for prod in productos]
+    stock = [ prod.stock for prod in productos]
+    return render_template("dashboard.html", 
+                          total_productos =  total_productos,
+                          valor_stock = valor_stock,
+                          nombres = nombres,
+                          stock = stock)
+    
+@auth_bp.route("/analisis-ia")
+def analisis_ia ():
+    productos = Producto.query.all()
+    lista = ""
+    for  p in productos:
+        lista += f"{p.nombre}, stock: {p.stock} , precio: {p.precio}\n"
+    
+    prompt = f" Analiza los siguientes productos de repostería {lista} usando nombre, stock y ventas. Identifica productos con stock bajo y stock alto, productos más vendidos y genera recomendaciones para ventas."
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+    generated_text = response.choices[0].message.content
+    return jsonify({"analisis": generated_text})
