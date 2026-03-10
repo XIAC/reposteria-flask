@@ -1,6 +1,6 @@
 from  flask import Blueprint, redirect, url_for, render_template, request
 from flask_login import login_required, login_user, logout_user
-from .models  import User
+from .models  import User, Producto
 from  .extensions import login_manager
 from flask import jsonify
 from .ai_chat import preguntar_chatbot
@@ -27,6 +27,8 @@ def login():
             return redirect("/admin")
     
     return render_template("login.html")
+
+@auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
